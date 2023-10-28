@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/playerShip2_red.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Naves/Player/MaterialFisico.tres" type="PhysicsMaterial" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Juego/Proyectiles/Laser/LaserBeam2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Juego/Naves/Player/Estela/Trail2D.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Juego/Naves/Player/MotorSFX.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Juego/Naves/Player/ImpactoNave.ogg" type="AudioStream" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 38.3098
@@ -62,6 +63,10 @@ position = Vector2( 1.04899, -36.3666 )
 [node name="LaserBeam2D" parent="." instance=ExtResource( 5 )]
 position = Vector2( 40.9813, 0.44545 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spawn"
+anims/spawn = SubResource( 2 )
+
 [node name="EstelaPuntoInicio" type="Position2D" parent="."]
 position = Vector2( -10.1393, -0.0270195 )
 
@@ -76,9 +81,10 @@ target_path = NodePath("..")
 
 [node name="MotorSFX" parent="." instance=ExtResource( 7 )]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "spawn"
-anims/spawn = SubResource( 2 )
+[node name="ImpactoSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -16.155
+bus = "SFX"
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="Canion"]
