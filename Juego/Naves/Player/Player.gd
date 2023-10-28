@@ -22,7 +22,7 @@ onready var estela:Estela = $EstelaPuntoInicio/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
 onready var colisionador:CollisionShape2D = $CollisionShape2D
 onready var impacto_sfx: AudioStreamPlayer = $ImpactoSFX
-
+onready var escudo:Escudo = $Escudo
 
 
 #Métodos
@@ -46,6 +46,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("mover_atras"):
 		estela.set_max_points(0)
 		motor_sfx.sonido_off()
+		
+	#Control Escudo
+	if event.is_action_pressed("escudo") and not escudo.get_esta_activado():
+		escudo.activar()
 	
 	
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
@@ -62,6 +66,7 @@ func recibir_danio(danio: float) -> void:
 	if hitpoints <= 0.0:
 		destruir()
 	impacto_sfx.play()
+	
 func controlador_estados(nuevo_estado: int) -> void:
 	match nuevo_estado:
 		ESTADO.SPAWN:
