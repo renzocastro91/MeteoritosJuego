@@ -5,7 +5,7 @@ class_name Escudo
 var esta_activado:bool = false setget, get_esta_activado
 
 #Variables export
-export var energia:float = 9.0
+export var energia:float = 10.0
 export var radio_desgaste = -1.5
 
 #Métodos
@@ -19,8 +19,8 @@ func _process(delta: float) -> void:
 		desactivar()
 		
 #Métodos Custom
-func controlar_colisionador(esta_activado: bool) -> void:
-	$CollisionShape2D.set_deferred("disabled", esta_activado)
+func controlar_colisionador(activado: bool) -> void:
+	$CollisionShape2D.set_deferred("disabled", activado)
 
 func activar() -> void:
 	if energia <= 0.0:

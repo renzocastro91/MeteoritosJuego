@@ -22,7 +22,7 @@ func _ready() -> void:
 	almacenar_puntos_disparo()
 	timer_enfriamiento.wait_time = cadencia_disparo
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if esta_disparando and esta_enfriado:
 		disparar()
 		
@@ -54,5 +54,4 @@ func set_puede_disparar(duenio_puede: bool) -> void:
 
 func _on_TimerEnfriamiento_timeout() -> void:
 	esta_enfriado = true
-	disparo_sfx.stop()
 	

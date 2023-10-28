@@ -23,7 +23,7 @@ func crear_contenedores() -> void:
 	add_child(contenedor_proyectiles)
 	
 func _on_nave_destruida(posicion: Vector2, num_explosiones: int) -> void:
-	for i in range(num_explosiones):
+	for _i in range(num_explosiones):
 		var new_explosion:Node2D = explosion.instance()
 		new_explosion.global_position = posicion
 		add_child(new_explosion)

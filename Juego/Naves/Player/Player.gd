@@ -16,7 +16,7 @@ var dir_rotacion:int = 0
 var estado_actual:int = ESTADO.SPAWN
 
 #Atributos onready
-onready var canion:Canion = $Canion
+onready var canion:Canion = $CanionPlayer
 onready var laser:RayoLaser = $LaserBeam2D
 onready var estela:Estela = $EstelaPuntoInicio/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
@@ -52,12 +52,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		escudo.activar()
 	
 	
-func _integrate_forces(state: Physics2DDirectBodyState) -> void:
+func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
 	apply_central_impulse(empuje.rotated(rotation))
 	apply_torque_impulse(dir_rotacion * portencia_rotacion)
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	player_input()
 	
 #Métodos Custom
